@@ -16,13 +16,13 @@ class MsgQueue
         $this->queue = $queue;
     }
 
-    public function pop($data, $type = 1)
+    public function push($data, $type = 1)
     {
         $result = msg_send($this->queue, $type, $data);
         return $result;
     }
 
-    public function push($type = 0,$flags = MSG_IPC_NOWAIT)
+    public function pop($type = 0,$flags = MSG_IPC_NOWAIT)
     {
         msg_receive($this->queue, $type, $message_type, 1024, $message,true,$flags);
 //        var_dump($message_type);
